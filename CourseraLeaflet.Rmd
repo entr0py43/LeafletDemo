@@ -1,0 +1,39 @@
+---
+title: "Leaflet Map"
+author: "Neil L"
+date: "February 22, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Creating a map with Leaflet
+
+I decided to create a map of cities I've lived in, using the following code:
+```{r cities}
+library(leaflet)
+homeIcon<-makeIcon(
+      iconUrl = "~/Leaflet/homePin2.png",
+      iconWidth = 32 , iconHeight = 32,
+      iconAnchorX = 16, iconAnchorY = 16
+)
+a=c(43.057542, -89.518008) # madison wi
+b=c(40.436219, -79.949214) # pittsburgh pa
+c=c(39.965055, -75.179201) # philadelphia pa
+d=c(41.700224, -72.890406) # farmington ct
+e=c(38.804347, -77.495059) # manassas va
+f=c(25.913326, -80.309333) # miami, fl
+df<-as.data.frame(rbind(a,b,c,d,e,f))
+colnames(df)<-c("lat", "lng")
+df %>% leaflet() %>%
+      addTiles() %>%
+      addMarkers(icon = homeIcon)
+```
+
+
+sessionInfo()  
+R version 3.4.3 (2017-11-30)  
+Platform: x86_64-w64-mingw32/x64 (64-bit)  
+Running under: Windows 7 x64 (build 7601) Service Pack 1  
